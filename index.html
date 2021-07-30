@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>My Playlist</title>
+</head>
+<body>
+    <main>
+        <div class="song_card">
+            <h1>Tu Hi Yaar Mera ....</h1>
+            <div class="img-circle">
+                <img  src="img/img1.jpg" alt="">
+            </div>
+            <audio src="music/mus1.mp3"></audio>
+            <div class="music-controls">
+                <i class="fas fa-backward" id="prev" title="Previous"></i>
+                <i class="fas fa-play main-button" id="play" title="Play"></i>
+                <i class="fas fa-forward" id="next" title="Next"></i>
+            </div>
+        </div>
+    </main>
+    <div class="c1"></div>
+    <div class="c2"></div>
+    <div class="c3"></div>
+    <div class="c4"></div>
+    <div class="c5"></div>
+    <div class="c6"></div>
+    <div class="c7"></div>
+</body>
+<script>
+    const song_img = document.querySelector("img");
+    const music = document.querySelector("audio");
+    const play = document.getElementById("play");
+    const song_title = document.querySelector("h1"); 
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+
+    const songs = [
+        {
+            name:"music/mus1.mp3",
+            title:"Tu Hi Yaar Mera....",
+            imag:"img/img1.jpg",
+        },
+        {
+            name:"music/mus2.mp3",
+            title:"Chaav Laga",
+            imag:"img/img2.jpg",
+        },
+        {
+            name:"music/mus3.mp3",
+            title:"Illegal Weapon 2.0",
+            imag:"img/img3.jpg",
+        },
+        {
+            name:"music/mus4.mp3",
+            title:"Tum Mile",
+            imag:"img/img4.jpg",
+        },
+        {
+            name:"music/mus5.mp3",
+            title:"Duniya",
+            imag:"img/img5.jpg",
+        },
+        {
+            name:"music/mus6.mp3",
+            title:"Ishq Tera",
+            imag:"img/img6.jpg",
+        },
+        {
+            name:"music/mus7.mp3",
+            title:"Khairiyat",
+            imag:"img/img7.jpg",
+        },
+        {
+            name:"music/mus8.mp3",
+            title:"Mere Rashke Qamar",
+            imag:"img/img8.jpg",
+        },
+        {
+            name:"music/mus9.mp3",
+            title:"Tum Hi Aana",
+            imag:"img/img9.jpg",
+        },
+        {
+            name:"music/mus10.mp3",
+            title:"Chale Aana",
+            imag:"img/img10.jpg",
+        }
+    ];
+
+    let play_status = false;
+    play.addEventListener('click', () => {
+        if (play_status == false) {
+            music.play();
+            play_status = true;
+            play.classList.replace('fa-play', 'fa-pause');
+            song_img.classList.add('beat');
+            play.title = 'Pause';
+        } 
+        else {
+            music.pause();
+            play_status = false;
+            play.classList.replace('fa-pause', 'fa-play');
+            song_img.classList.remove('beat');
+            play.title = 'Play'; 
+        }
+    });
+    const loadsong = (songs) => {
+        song_title.textContent = songs.title;
+        song_img.src = songs.imag;
+        music.src = songs.name;
+    };
+
+     songindex = 0;
+    const nextsong = () => {
+        songindex = (songindex + 1)%songs.length;
+        loadsong(songs[songindex]);
+        music.play();
+        play_status = true;
+        play.classList.replace('fa-play', 'fa-pause');
+        song_img.classList.add('beat');
+        play.title = 'Pause';
+    };
+    const prevsong = () => {
+        songindex = (songindex - 1 + songs.length)%songs.length;
+        loadsong(songs[songindex]);
+        music.play();
+        play_status = true;
+        play.classList.replace('fa-play', 'fa-pause');
+        song_img.classList.add('beat');
+        play.title = 'Pause';
+    };
+
+
+    next.addEventListener("click", nextsong);
+    prev.addEventListener("click", prevsong);
+</script>
+</html>
