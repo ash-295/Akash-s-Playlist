@@ -20,6 +20,14 @@ main{
     z-index: 2;
 }
 
+@media screen and (max-width: 480px) {
+    .song_card{
+        width: 300px;
+        height: 500px;
+        border-radius: 20px;
+    }
+  }
+
 .c1{
     width: 300px;
     height: 300px;
@@ -215,6 +223,11 @@ h1{
     text-align: center;
     padding-top: 15%;
 }
+@media screen and (max-width: 480px) {
+    h1{
+        font-size: 1.3rem;
+    }
+  }
 .img-circle{
     width: 15rem;
     height: 15rem;
@@ -223,6 +236,12 @@ h1{
     align-items: center;
     justify-content: center;
 }
+@media screen and (max-width: 480px) {
+    .img-circle{
+        width: 12rem;
+        height: 12rem;
+    }
+  }
 
 img{
     width: 100%;
