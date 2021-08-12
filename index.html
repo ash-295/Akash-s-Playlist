@@ -19,6 +19,17 @@
                 <img  src="img/img1.jpg" alt="">
             </div>
             <audio src="music/mus1.mp3"></audio>
+
+            <div class="progress-container">
+                <div class="progress-duration" >
+                    <div id="current-time">0:00</div>
+                    <div id="tot-time">3:21</div>
+                </div>
+                <div class="progess-bar" id="progess-bar">
+                    <div class="progress" id="prog-dur"></div>
+                </div>
+            </div>
+
             <div class="music-controls">
                 <i class="fas fa-backward" id="prev" title="Previous"></i>
                 <i class="fas fa-play main-button" id="play" title="Play"></i>
@@ -41,6 +52,10 @@
     const song_title = document.querySelector("h1"); 
     const prev = document.getElementById("prev");
     const next = document.getElementById("next");
+    let curr_time = document.getElementById("current-time");
+    let tot_time = document.getElementById("tot-time");
+    let prog_width = document.getElementById("prog-dur");
+    let progess_bar = document.getElementById("progess-bar");
 
     const songs = [
         {
@@ -138,7 +153,34 @@
         play.title = 'Pause';
     };
 
+    music.addEventListener('timeupdate', (event) => {
+        const{ currentTime, duration} = event.srcElement;
+        let curr_width = (currentTime / duration) * 100;
+        prog_width.style.width = `${curr_width}%`;
+        if(duration && curr_time){
+            if (Math.floor(currentTime%60)<10) {
+                curr_time.textContent = `${Math.floor(currentTime/60)}:0${Math.floor(currentTime%60)}`;
+            }
+            else{
+                curr_time.textContent = `${Math.floor(currentTime/60)}:${Math.floor(currentTime%60)}`;
+            }
+            if (Math.floor(duration%60)<10) {
+                tot_time.textContent = `${Math.floor(duration/60)}:0${Math.floor(duration%60)}`;
+            }
+            else{
+                tot_time.textContent = `${Math.floor(duration/60)}:${Math.floor(duration%60)}`;
+            }
+        }
+        
+    });
+    progess_bar.addEventListener('click', (event) => {
+        console.log(event);
+        let curr_width = (event.offsetX / event.srcElement.clientWidth) * 100;
+        // prog_width.style.width = '${curr_width}%';
+        music.currentTime = (curr_width*music.duration)/100;
+    });
 
+    music.addEventListener('ended', nextsong);
     next.addEventListener("click", nextsong);
     prev.addEventListener("click", prevsong);
 </script>
