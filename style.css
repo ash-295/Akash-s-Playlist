@@ -40,6 +40,7 @@ main{
     animation-name: anc1;
     animation-duration: 19s;
     animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 @keyframes anc1{
     0%{
@@ -55,6 +56,22 @@ main{
         right: 300px;
     }
 } 
+@media screen and (max-width: 480px) {
+    @keyframes anc1{
+        0%{
+            top: 80px;
+            right: 300px;
+        }
+        50%{
+            top: 450px;
+            right: 100px;
+        }
+        100%{
+            top: 80px;
+            right: 300px;
+        }
+    }
+  }
 .c2{
     width: 100px;
     height: 100px;
@@ -67,6 +84,7 @@ main{
     animation-name: anc2;
     animation-duration: 22s;
     animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 @keyframes anc2{
     0%{
@@ -82,6 +100,22 @@ main{
         right: 600px;
     }
 }
+@media screen and (max-width: 480px) {
+    @keyframes anc2{
+        0%{
+            top: 20px;
+            right: 20px;
+        }
+        50%{
+            top: 400px;
+            right: 500px;
+        }
+        100%{
+            top: 20px;
+            right: 20px;
+        }
+    }
+  }
 .c3{
     width: 200px;
     height: 200px;
@@ -94,6 +128,7 @@ main{
     animation-name: anc3;
     animation-duration: 27s;
     animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 @keyframes anc3{
     0%{
@@ -121,6 +156,7 @@ main{
     animation-name: anc4;
     animation-duration: 20s;
     animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 @keyframes anc4{
     0%{
@@ -148,6 +184,8 @@ main{
     animation-name: anc5;
     animation-duration: 17s;
     animation-iteration-count: infinite;
+    animation-direction: alternate;
+
 }
 @keyframes anc5{
     0%{
@@ -175,6 +213,7 @@ main{
     animation-name: anc6;
     animation-duration: 25s;
     animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 @keyframes anc6{
     0%{
@@ -229,9 +268,9 @@ h1{
     }
   }
 .img-circle{
-    width: 15rem;
-    height: 15rem;
-    margin: 20% auto;
+    width: 13rem;
+    height: 13rem;
+    margin: 15% auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -275,6 +314,7 @@ img{
     align-items: center;
     margin: auto;
 }
+
 .music-controls .fas{
     font-size: 1.5rem;
     cursor: pointer;
@@ -291,4 +331,44 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.progress-container{
+    width: 100%;
+    padding: 0% 10%;
+    color: #571811;
+    justify-content: center;
+    align-items: center;
+}
+
+.progess-bar{
+    width: 100%;
+    height: 5px;
+    border-radius: 60px;
+    background-color: white;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    transform: width 1s linear;
+    -moz-transform: width 1s linear;
+    -o-transform: width 1s linear;
+    -webkit-transform: width 1s linear;
+    cursor: pointer;
+}
+.progress{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color:#571811;
+    border-radius: 60px;
+    cursor: pointer;
+}
+.progress-duration{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 400;
 }
